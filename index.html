@@ -7,7 +7,7 @@
     <meta name="theme-color" content="#f7f8fa" />
     <meta
       name="description"
-      content="邢鹏程的个人简历。Java 后端工程师，具有企业 SaaS、电力集控与政务平台开发经验，关注微服务、性能优化与系统交付。"
+      content="邢鹏程的个人简历。Java 后端工程师，具有 HES 智能计量、企业 SaaS、电力集控与政务平台开发经验，关注 CDC 数据可靠性、线损计算与系统交付。"
     />
     <title>邢鹏程 · Java 后端工程师</title>
     <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
@@ -76,7 +76,7 @@
             把业务需求，落成可靠的系统。<br />专注 Java
             后端与分布式系统，具有企业 SaaS、<br
               class="desktop-break"
-            />电力集控和政务平台的开发与交付经验。
+            />智能计量、电力集控及政务平台开发经验。
           </p>
           <div class="hero-actions">
             <a class="button button-primary" href="#projects"
@@ -86,7 +86,7 @@
               class="button button-secondary"
               href="assets/resume.pdf"
               download="邢鹏程-Java后端-简历.pdf"
-              >下载简历
+              >原始简历 PDF
               <svg
                 viewBox="0 0 20 20"
                 fill="none"
@@ -163,7 +163,7 @@
           ><span>开始职业经历</span>
         </div>
         <div>
-          <strong>03<span>个</span></strong
+          <strong>04<span>个</span></strong
           ><span>代表项目</span>
         </div>
         <div>
@@ -214,10 +214,11 @@
             <span class="skill-number">03</span>
             <h3>数据与消息</h3>
             <p>
-              关注 MySQL 事务、索引与查询优化，熟悉 Redis 缓存和 RocketMQ
-              消息处理，具备分布式锁、幂等与消息顺序处理经验。
+              关注 MySQL 事务、索引与查询优化，使用 Redis 缓存、Redis Stream 和
+              RocketMQ，具备 CDC
+              消费治理、多实例接管、幂等与数据一致性核验经验。
             </p>
-            <div class="skill-stack">MySQL · Redis · RocketMQ</div>
+            <div class="skill-stack">MySQL · Redis Stream · CDC · RocketMQ</div>
           </article>
           <article class="skill">
             <span class="skill-number">04</span>
@@ -245,7 +246,7 @@
               </h2>
             </div>
             <p class="section-intro">
-              不同的业务场景，相同的工程追求。<br />以下内容整理自原始简历。
+              从企业业务到智能电网，<br />持续参与采集、计算、服务与交付的完整链路。
             </p>
           </div>
           <div
@@ -260,7 +261,7 @@
               data-filter="all"
               aria-pressed="true"
             >
-              全部项目 <span>03</span></button
+              全部项目 <span>04</span></button
             ><button type="button" data-filter="saas" aria-pressed="false">
               企业 SaaS</button
             ><button type="button" data-filter="energy" aria-pressed="false">
@@ -274,8 +275,83 @@
             </button>
           </div>
           <div class="project-list">
+            <article class="project" data-category="energy">
+              <div class="project-index">01 <span>/ SMART METERING</span></div>
+              <div class="project-content">
+                <div class="project-title-row">
+                  <h3>HES 智能计量与数据管理平台</h3>
+                  <span class="project-date">2024.08 — 至今</span>
+                </div>
+                <p class="project-subtitle">
+                  智能电表采集 · 计量数据处理 · 台区线损与电能质量
+                </p>
+                <p class="project-description">
+                  围绕电表采集、CDC 消费、业务计算、Redis 缓存与归档查询，完成
+                  HES / MDM / AHE / EDS
+                  多模块功能开发与联调，覆盖摩洛哥项目的规约、地区档案和多语言适配。
+                </p>
+                <div class="tags">
+                  <span>Java</span><span>Redis Stream</span><span>CDC</span
+                  ><span>MySQL</span><span>GoRules</span
+                  ><span>DLMS / COSEM</span>
+                </div>
+                <p class="project-description">
+                  <strong>阶段成果：</strong>完成线损大屏
+                  <strong>9 个接口</strong>及
+                  <strong>10 类</strong>电能质量异常规则；千表测试场景完成
+                  <strong>30,000 / 30,000</strong> 点数据对账。
+                </p>
+                <details>
+                  <summary>
+                    查看工作内容 <span aria-hidden="true">+</span>
+                  </summary>
+                  <ul>
+                    <li>
+                      <strong>CDC 可靠性：</strong
+                      >优化批量消费、解析复用、批内合并、ACK
+                      与失败重试，验证多实例接管、消费顺序和幂等；修复历史曲线全量更新引起的采集成功点数统计异常，完善补算与归档兜底。
+                    </li>
+                    <li>
+                      <strong>电量与线损：</strong>对照 MDM 迁移日/月电量、96
+                      点负荷及技术/非技术线损计算，覆盖双总表、仅 01、仅 02
+                      三类台区拓扑，避免缺失、重复采样被误判为完整日损耗。
+                    </li>
+                    <li>
+                      <strong>大屏后端：</strong>实现
+                      KPI、趋势、排名、告警/事件统计和明细等九接口，复用 CDC
+                      维护的 Redis
+                      业务缓存，在缺失、覆盖不足或修订过期时回源结果与归档表；完成区域权限、筛选和
+                      CSV 导出联调。
+                    </li>
+                    <li>
+                      <strong>电能质量诊断：</strong>使用 GoRules
+                      实现过压、欠压、三相不平衡等十类规则，统一单点诊断与 CDC
+                      自动判定，提供分相阈值及电表级覆盖；51
+                      组测试采样完成采集至事件落库闭环，生成 24 条事件，43 项
+                      Java 与 28 项规则测试通过。
+                    </li>
+                    <li>
+                      <strong>设备档案与国际化：</strong>适配摩洛哥 12
+                      个大区、75
+                      个省/专区，扩展多类档案的地区维护、导入导出与缓存刷新；修复并发导入、缓存隔离和事务问题，完善中、英、法、西、阿多语言资源。
+                    </li>
+                    <li>
+                      <strong>规约与链路联调：</strong>完成 G3-PLC Hybrid RF
+                      信道读写、DLMS/COSEM OBIS 与 Group 映射、AHE XML 结构及
+                      EDS
+                      模拟采集适配，核对从采集到入库、计算和接口展示的数据一致性。
+                    </li>
+                  </ul>
+                  <p class="project-subtitle">
+                    以上阶段成果依据 2026.07—2026.10
+                    工作记录整理；数字为指定测试场景结果。
+                  </p>
+                </details>
+              </div>
+              <span class="project-arrow" aria-hidden="true">↗</span>
+            </article>
             <article class="project" data-category="saas">
-              <div class="project-index">01 <span>/ SAAS</span></div>
+              <div class="project-index">02 <span>/ SAAS</span></div>
               <div class="project-content">
                 <div class="project-title-row">
                   <h3>Ctrlbox</h3>
@@ -317,7 +393,7 @@
               <span class="project-arrow" aria-hidden="true">↗</span>
             </article>
             <article class="project" data-category="energy">
-              <div class="project-index">02 <span>/ ENERGY</span></div>
+              <div class="project-index">03 <span>/ ENERGY</span></div>
               <div class="project-content">
                 <div class="project-title-row">
                   <h3>新一代集控站监控平台</h3>
@@ -358,7 +434,7 @@
               <span class="project-arrow" aria-hidden="true">↗</span>
             </article>
             <article class="project" data-category="government">
-              <div class="project-index">03 <span>/ GOVERNMENT</span></div>
+              <div class="project-index">04 <span>/ GOVERNMENT</span></div>
               <div class="project-content">
                 <div class="project-title-row">
                   <h3>江苏海事局信用管理平台</h3>
@@ -412,9 +488,23 @@
             一路积累，<br />持续精进<span class="accent">。</span>
           </h2>
           <p>在真实的业务中学习，<br />在持续的交付中成长。</p>
-          <span class="source-note">工作经历截至原简历所载的 2024 年 6 月</span>
+          <span class="source-note"
+            >HES 阶段成果整理至 2026 年 10 月；下载的 PDF 为原始简历。</span
+          >
         </div>
         <div class="timeline">
+          <article class="timeline-item">
+            <div class="timeline-meta">
+              <span class="timeline-dot"></span><span>2024.08 — 至今</span
+              ><span class="timeline-type">项目</span>
+            </div>
+            <h3>HES 智能计量与数据管理平台</h3>
+            <p class="timeline-role">Java 后端开发</p>
+            <p>
+              参与采集与 CDC
+              数据处理、线损计算、大屏后端、电能质量诊断，以及规约和多语言适配，完成跨模块联调、数据对账与发布验证。
+            </p>
+          </article>
           <article class="timeline-item">
             <div class="timeline-meta">
               <span class="timeline-dot"></span><span>2022.07 — 2024.06</span
@@ -481,7 +571,7 @@
               >GitHub <span>@xingpengcheng417</span
               ><span aria-hidden="true">↗</span></a
             ><a href="assets/resume.pdf" download="邢鹏程-Java后端-简历.pdf"
-              >PDF 简历 <span>下载完整版本</span
+              >原始 PDF 简历 <span>下载原始版本</span
               ><span aria-hidden="true">↓</span></a
             >
           </div>
